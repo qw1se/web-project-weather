@@ -74,4 +74,4 @@ presentation: https://www.canva.com/design/DAG50vI2FPs/0qSzcAe7qRZCnrneg3YMEQ/ed
 
 ## Author
 
-© Tulkiev Alen — https://qw1se.github.io/web-project-2/
+© Tulkiev Alen — https://qw1se.github.io/web-project-weather/
