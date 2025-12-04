@@ -1,0 +1,264 @@
+/* Сброс стилей */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+}
+
+/* Основной контейнер страницы */
+body {
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    /* Если на компьютере - центрируем "телефон", если на мобильном - займет всё место */
+    align-items: flex-start; 
+    color: #fff;
+    transition: background 1s ease;
+    overflow-x: hidden;
+    padding-top: 20px;
+}
+
+/* --- ТЕМЫ ФОНА --- */
+
+/* ДЕНЬ (06:00 - 18:00): Цвет неба */
+body.day-theme {
+    background: linear-gradient(180deg, #59adff 0%, #cce0ff 100%);
+}
+
+/* НОЧЬ (18:00 - 06:00): Глубокий космос */
+body.night-theme {
+    background: linear-gradient(180deg, #081b2e 0%, #000000 100%);
+}
+
+/* --- ЭФФЕКТ ЗВЕЗД (ВИДЕН ТОЛЬКО НОЧЬЮ) --- */
+.background-stars {
+    position: fixed;
+    top: 0; left: 0; width: 100%; height: 100%;
+    pointer-events: none;
+    /* Создаем звезды через градиенты */
+    background-image: 
+        radial-gradient(white, rgba(255,255,255,.2) 2px, transparent 3px),
+        radial-gradient(white, rgba(255,255,255,.15) 1px, transparent 2px),
+        radial-gradient(white, rgba(255,255,255,.1) 2px, transparent 3px);
+    background-size: 550px 550px, 350px 350px, 250px 250px; 
+    background-position: 0 0, 40 60, 130 270;
+    
+    opacity: 0; /* Днем скрыты */
+    transition: opacity 1.5s ease;
+    z-index: -1;
+}
+
+body.night-theme .background-stars {
+    opacity: 1; /* Ночью появляются */
+}
+
+/* --- КОНТЕЙНЕР ПРИЛОЖЕНИЯ --- */
+.app {
+    width: 100%;
+    max-width: 400px; /* Ограничение ширины для ПК */
+    padding: 20px;
+}
+
+/* --- ПОИСК --- */
+.search-box {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 40px;
+}
+
+.search-box input {
+    flex: 1;
+    padding: 12px 20px;
+    border-radius: 15px;
+    border: none;
+    background: rgba(0, 0, 0, 0.15); /* Темное стекло */
+    color: #fff;
+    font-size: 16px;
+    outline: none;
+    backdrop-filter: blur(10px);
+    box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+    transition: background 0.3s;
+}
+
+.search-box input::placeholder {
+    color: rgba(255,255,255,0.7);
+}
+
+.search-box input:focus {
+    background: rgba(0, 0, 0, 0.25);
+}
+
+.search-box button {
+    background: rgba(0, 0, 0, 0.15);
+    border: none;
+    border-radius: 15px;
+    color: #fff;
+    width: 45px;
+    cursor: pointer;
+    backdrop-filter: blur(10px);
+    font-size: 18px;
+    transition: 0.2s;
+}
+
+.search-box button:hover {
+    background: rgba(255,255,255,0.2);
+}
+
+.hidden { display: none; }
+
+/* --- ГЛАВНАЯ ИНФОРМАЦИЯ --- */
+.main-info {
+    text-align: center;
+    margin-bottom: 40px;
+    text-shadow: 0 2px 10px rgba(0,0,0,0.1);
+}
+
+.city-name {
+    font-size: 34px;
+    font-weight: 500;
+    margin-bottom: 0px;
+    letter-spacing: 0.5px;
+}
+
+.temperature {
+    font-size: 96px;
+    font-weight: 200; /* Тонкий шрифт как в iOS */
+    line-height: 1;
+    letter-spacing: -2px;
+}
+
+.condition-box {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 5px;
+    margin-top: 5px;
+}
+
+.description {
+    font-size: 20px;
+    text-transform: capitalize;
+    font-weight: 500;
+    opacity: 0.9;
+}
+
+.main-icon {
+    width: 35px;
+    height: 35px;
+    filter: drop-shadow(0 2px 4px rgba(0,0,0,0.2));
+}
+
+.high-low {
+    font-size: 18px;
+    font-weight: 500;
+    margin-top: 5px;
+    opacity: 1;
+}
+
+/* --- СТЕКЛЯННЫЕ КАРТОЧКИ --- */
+.glass-card {
+    background: rgba(40, 40, 50, 0.3); /* Дефолт (ночь) */
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border-radius: 20px;
+    padding: 15px 20px;
+    margin-bottom: 15px;
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.15);
+}
+
+/* Светлее для дня */
+body.day-theme .glass-card {
+    background: rgba(255, 255, 255, 0.25);
+    border: 1px solid rgba(255, 255, 255, 0.3);
+}
+
+.card-header {
+    border-bottom: 1px solid rgba(255,255,255,0.15);
+    padding-bottom: 10px;
+    margin-bottom: 15px;
+    font-size: 13px;
+    font-weight: 600;
+    opacity: 0.7;
+    letter-spacing: 0.5px;
+    text-transform: uppercase;
+}
+
+/* --- ПОЧАСОВОЙ ПРОГНОЗ --- */
+.hourly-list {
+    display: flex;
+    gap: 25px;
+    overflow-x: auto;
+    padding-bottom: 10px;
+    /* Скрываем скроллбар */
+    scrollbar-width: none; 
+}
+.hourly-list::-webkit-scrollbar { display: none; }
+
+.hour-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    min-width: 50px;
+    gap: 10px;
+}
+
+.hour-time { font-size: 15px; font-weight: 600; }
+.hour-temp { font-size: 18px; font-weight: 600; }
+.hour-item img { width: 40px; filter: drop-shadow(0 2px 3px rgba(0,0,0,0.2)); }
+
+/* --- НЕДЕЛЬНЫЙ ПРОГНОЗ --- */
+.week-list {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.day-row {
+    display: grid;
+    grid-template-columns: 60px 40px 1fr; /* День - Иконка - Полоска */
+    align-items: center;
+    font-size: 18px;
+    font-weight: 600;
+}
+
+.day-row img {
+    width: 30px;
+    justify-self: center;
+}
+
+/* Полоска температуры */
+.temp-bar-container {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    width: 100%;
+}
+
+.temp-val {
+    width: 35px;
+    text-align: center;
+    opacity: 0.8;
+    font-size: 16px;
+}
+
+.bar-track {
+    flex: 1;
+    height: 5px;
+    background: rgba(0,0,0,0.3);
+    border-radius: 5px;
+    position: relative;
+    overflow: hidden;
+}
+
+body.day-theme .bar-track {
+    background: rgba(0,0,0,0.1);
+}
+
+.bar-fill {
+    height: 100%;
+    border-radius: 5px;
+    /* Градиент полоски (холодный -> теплый) */
+    background: linear-gradient(90deg, #90cbfb 0%, #ffc674 100%); 
+}
