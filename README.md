@@ -7,7 +7,7 @@ A simple, modern, and responsive weather application built with plain HTML, CSS,
 ## Demo
 
 View the live demo:  
-https://qw1se.github.io/web-project-2/
+https://qw1se.github.io/web-project-weather/
 
 ---
 
