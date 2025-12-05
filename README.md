@@ -39,7 +39,7 @@ Key points:
 ## Installation & Local Run
 
 1. Clone the repository:  
-   git clone https:https://github.com/qw1se/web-project-weather
+   git clone https://github.com/qw1se/web-project-weather.git
 2. Open index.html in your browser (double-click or serve via a local web server).
 
 Note: This is a static project — no backend or build step is required.
